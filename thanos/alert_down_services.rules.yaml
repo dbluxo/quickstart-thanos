@@ -1,0 +1,19 @@
+groups:
+- name: metamonitoring
+  rules:
+  - alert: PrometheusReplicaDown
+    annotations:
+      message: Prometheus replica in cluster {{$labels.cluster}} has disappeared from Prometheus target discovery.
+    expr: |
+      label_replace(
+        absent(sum(up{job="prometheus", cluster="chicago", instance=~".*:9090"}) by (job, cluster) == 2),
+        "cluster", "chicago", "",""
+      )
+      or
+      label_replace(
+        absent(sum(up{job="prometheus", cluster="seattle", instance=~".*:9090"}) by (job, cluster) == 2),
+        "cluster", "seattle", "",""
+      )
+    for: 15s # for demo purposes
+    labels:
+      severity: critical

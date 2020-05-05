@@ -11,15 +11,15 @@ volumes:
 services:
 
   prometheus-1:
-    image: prom/prometheus:v2.16.0
+    image: prom/prometheus:v2.17.2
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus1_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus1.yaml'
       - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.max-block-duration=2h'
-      - '--storage.tsdb.min-block-duration=2h'
+      - '--storage.tsdb.max-block-duration=30m'
+      - '--storage.tsdb.min-block-duration=30m'
       - '--web.enable-lifecycle'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
@@ -33,15 +33,15 @@ services:
     restart: always
 
   prometheus-2:
-    image: prom/prometheus:v2.16.0
+    image: prom/prometheus:v2.17.2
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus2_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus2.yaml'
       - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.max-block-duration=2h'
-      - '--storage.tsdb.min-block-duration=2h'
+      - '--storage.tsdb.max-block-duration=30m'
+      - '--storage.tsdb.min-block-duration=30m'
       - '--web.enable-lifecycle'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
@@ -55,15 +55,15 @@ services:
     restart: always
 
   prometheus-3:
-    image: prom/prometheus:v2.16.0
+    image: prom/prometheus:v2.17.2
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus3_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus3.yaml'
       - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.max-block-duration=2h'
-      - '--storage.tsdb.min-block-duration=2h'
+      - '--storage.tsdb.max-block-duration=30m'
+      - '--storage.tsdb.min-block-duration=30m'
       - '--web.enable-lifecycle'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
@@ -77,15 +77,15 @@ services:
     restart: always
 
   prometheus-4:
-    image: prom/prometheus:v2.16.0
+    image: prom/prometheus:v2.17.2
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus4_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus4.yaml'
       - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.max-block-duration=2h'
-      - '--storage.tsdb.min-block-duration=2h'
+      - '--storage.tsdb.max-block-duration=30m'
+      - '--storage.tsdb.min-block-duration=30m'
       - '--web.enable-lifecycle'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
@@ -99,7 +99,7 @@ services:
     restart: always
 
   thanos-sidecar-1:
-    image: quay.io/thanos/thanos:v0.11.0
+    image: quay.io/thanos/thanos:v0.12.2
     volumes:
       - ./thanos/:/etc/thanos/
       - prometheus1_data:/prometheus
@@ -116,7 +116,7 @@ services:
     restart: always
 
   thanos-sidecar-2:
-    image: quay.io/thanos/thanos:v0.11.0
+    image: quay.io/thanos/thanos:v0.12.2
     volumes:
       - ./thanos/:/etc/thanos/
       - prometheus2_data:/prometheus
@@ -133,7 +133,7 @@ services:
     restart: always
 
   thanos-sidecar-3:
-    image: quay.io/thanos/thanos:v0.11.0
+    image: quay.io/thanos/thanos:v0.12.2
     volumes:
       - ./thanos/:/etc/thanos/
       - prometheus3_data:/prometheus
@@ -150,7 +150,7 @@ services:
     restart: always
 
   thanos-sidecar-4:
-    image: quay.io/thanos/thanos:v0.11.0
+    image: quay.io/thanos/thanos:v0.12.2
     volumes:
       - ./thanos/:/etc/thanos/
       - prometheus4_data:/prometheus
@@ -167,7 +167,7 @@ services:
     restart: always
 
   thanos-querier:
-    image: quay.io/thanos/thanos:v0.11.0
+    image: quay.io/thanos/thanos:v0.12.2
     command:
       - 'query'
       - '--grpc-address=0.0.0.0:10091'
@@ -188,7 +188,7 @@ services:
     restart: always
 
   thanos-store-gateway:
-    image: quay.io/thanos/thanos:v0.11.0
+    image: quay.io/thanos/thanos:v0.12.2
     volumes:
       - ./thanos/:/etc/thanos/
     command:
@@ -202,7 +202,7 @@ services:
     restart: always
 
   thanos-compactor:
-    image: quay.io/thanos/thanos:v0.11.0
+    image: quay.io/thanos/thanos:v0.12.2
     volumes:
       - ./thanos/:/etc/thanos/
     command:
@@ -216,7 +216,7 @@ services:
     restart: always
 
   thanos-ruler:
-    image: quay.io/thanos/thanos:v0.11.0
+    image: quay.io/thanos/thanos:v0.12.2
     volumes:
       - ./thanos/:/etc/thanos/
     command:
@@ -238,9 +238,28 @@ services:
       - minio
       - thanos-querier
     restart: always
+
+  thanos-bucket-web:
+    image: quay.io/thanos/thanos:v0.12.2
+    volumes:
+      - ./thanos/:/etc/thanos/
+    command:
+      - 'bucket'
+      - 'web'
+      - '--http-address=0.0.0.0:10902'
+      - '--log.level=debug'
+      - '--objstore.config-file=/etc/thanos/bucket_config.yaml'
+      - '--refresh=5m'
+      - '--timeout=2m'
+      - '--label=replica'
+    ports:
+      - 10904:10902
+    depends_on:
+      - minio
+    restart: always
     
   minio:
-    image: minio/minio:RELEASE.2020-03-19T21-49-00Z
+    image: minio/minio:RELEASE.2020-05-01T22-19-14Z
     volumes:
       - minio_data:/data
     entrypoint: sh
@@ -248,6 +267,7 @@ services:
     environment:
       - MINIO_ACCESS_KEY=smth
       - MINIO_SECRET_KEY=Need8Chars
+      - MINIO_PROMETHEUS_AUTH_TYPE=public
     ports:
       - 9000:9000
   
@@ -276,6 +296,7 @@ services:
     command:
       - '--config.file=/etc/alertmanager/config.yaml'
       - '--storage.path=/alertmanager'
+
   cadvisor:
     image: gcr.io/google_containers/cadvisor:v0.35.0
     volumes:
@@ -288,7 +309,7 @@ services:
     restart: always
 
   grafana:
-    image: grafana/grafana:6.7.1
+    image: grafana/grafana:6.7.3
     user: "104"
     depends_on:
       - prometheus-1

@@ -24,6 +24,7 @@ The following services will be installed (and some are accessible via browser):
 | thanos-sidecar-4              | Thanos Sidecar for Prometheus Server 4                                    | not accessible via browser    |
 | thanos-querier                | Thanos Query Gateway                                                             | http://localhost:10902        |
 | thanos-ruler                  | Thanos Ruler                                                                     | http://localhost:10903        |
+| thanos-bucket-web             | Thanos Bucket Web                                                                | http://localhost:10904        |
 | thanos-store-gateway          | Thanos Store Gateway                                                             | not accessible via browser    |
 | thanos-compactor              | Thanos Compactor                                                                 | not accessible via browser    |
 | minio                         | Minio - Amazon S3 Compatible Object Storage  | http://localhost:9000 |
@@ -45,6 +46,7 @@ Minio:
 	Secret Key - Need8Chars (Keys are stored in the `docker-compose.yaml` file)
 
 # Add Thanos Data Source in Grafana
+Is already preconfigured.
 
 * Open http://localhost:3000/datasources/new
 * Choose `Prometheus`
@@ -60,10 +62,5 @@ Minio:
 This project is intended to be a quick-start to get up and running with Thanos. Security has not been implemented in this project.
 It is inspired by:
 
-- https://github.com/improbable-eng/thanos/tree/master/tutorials/kubernetes-demo
 - https://github.com/vegasbrianc/prometheus (forked from this project)
 - https://github.com/alexellis/quickstart-prometheus
-
-# Todo:
-
-- Provide basic Grafana dashboard for Thanos

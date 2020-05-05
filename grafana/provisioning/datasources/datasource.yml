@@ -3,14 +3,14 @@ apiVersion: 1
 
 # list of datasources that should be deleted from the database
 deleteDatasources:
-  - name: Prometheus
+  - name: Thanos
     orgId: 1
 
 # list of datasources to insert/update depending
 # whats available in the database
 datasources:
   # <string, required> name of the datasource. Required
-- name: Prometheus
+- name: Thanos
   # <string, required> datasource type. Required
   type: prometheus
   # <string, required> access mode. direct or proxy. Required
@@ -18,7 +18,7 @@ datasources:
   # <int> org id. will default to orgId 1 if not specified
   orgId: 1
   # <string> url
-  url: http://prometheus:9090
+  url: http://thanos-querier:10902
   # <string> database password, if used
   password:
   # <string> database user, if used
@@ -26,11 +26,11 @@ datasources:
   # <string> database name, if used
   database:
   # <bool> enable/disable basic auth
-  basicAuth: true
+  basicAuth: false
   # <string> basic auth username
-  basicAuthUser: admin
+  basicAuthUser:
   # <string> basic auth password
-  basicAuthPassword: foobar
+  basicAuthPassword:
   # <bool> enable/disable with credentials headers
   withCredentials:
   # <bool> mark as default datasource. Max one per org

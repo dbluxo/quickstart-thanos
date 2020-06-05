@@ -1,0 +1,11 @@
+name: docker-compose-actions-workflow
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Validate and view the Compose file.
+      run: docker-compose config
+    - name: Builds, (re)creates, starts, and attaches to containers for a service.
+      run: docker-compose up -d

@@ -9,5 +9,24 @@ jobs:
       run: docker-compose config
     - name: docker-compose-build-and-start
       run: docker-compose up -d
-    - name: test-prometheus-1
-      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9081/-/healthy > /dev/null
+    - name: test-prometheus
+      run: |
+        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9081/-/ready > /dev/null
+        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9082/-/ready > /dev/null
+        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9083/-/ready > /dev/null
+        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9084/-/ready > /dev/null
+    - name: test-thanos
+      run: |
+        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:10902/-/ready > /dev/null
+        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:10903/-/ready > /dev/null
+        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:10904/-/ready > /dev/null
+    - name: test-alertmanager
+      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:10902/-/ready > /dev/null
+    - name: test-grafana
+      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:3000/api/health > /dev/null
+    - name: test-cadvisor
+      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:8080/healthz > /dev/null
+    - name: test-node-exporter
+      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9100/metrics > /dev/null
+    - name: test-minio
+      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9000/minio/health/ready > /dev/null

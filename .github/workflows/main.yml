@@ -9,6 +9,8 @@ jobs:
       run: docker-compose config
     - name: docker-compose-build-and-start
       run: docker-compose up -d
+    - name: run-sleep-before-testing
+      run: sleep 30s
     - name: test-prometheus
       run: |
         timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9081/-/ready

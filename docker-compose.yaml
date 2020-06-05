@@ -298,7 +298,7 @@ services:
       - '--storage.path=/alertmanager'
 
   cadvisor:
-    image: gcr.io/google_containers/cadvisor:v0.35.0
+    image: gcr.io/google_containers/cadvisor:v0.36.0
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw

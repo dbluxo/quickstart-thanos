@@ -9,3 +9,5 @@ jobs:
       run: docker-compose config
     - name: docker-compose-build-and-start
       run: docker-compose up -d
+    - name: test-prometheus-1
+      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9081/-/healthy > /dev/null

@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Validate and view the Compose file.
+    - name: docker-compose-validate
       run: docker-compose config
-    - name: Builds, (re)creates, starts, and attaches to containers for a service.
+    - name: docker-compose-build-and-start
       run: docker-compose up -d

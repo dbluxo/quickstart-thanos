@@ -11,7 +11,7 @@ jobs:
       run: docker-compose up -d
     - name: test-prometheus
       run: |
-        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9071/-/ready
+        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9081/-/ready
         timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9082/-/ready
         timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9083/-/ready
         timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9084/-/ready

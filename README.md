@@ -1,3 +1,5 @@
+![Actions Status](https://img.shields.io/github/workflow/status/dbluxo/quickstart-thanos/docker-compose-actions-workflow)
+
 # Quickstart for Thanos
 
 Get up and running with Thanos, Prometheus, Grafana, Alertmanager, cAdvisor and Node Exporter with a `docker-compose.yaml` file in less than 5 minutes.

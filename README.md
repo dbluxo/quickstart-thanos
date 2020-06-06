@@ -1,4 +1,4 @@
-![Actions Status](https://img.shields.io/github/workflow/status/dbluxo/quickstart-thanos/docker-compose-actions-workflow)
+![build-and-test](https://github.com/dbluxo/quickstart-thanos/workflows/build-and-test/badge.svg?branch=master)
 
 # Quickstart for Thanos
 

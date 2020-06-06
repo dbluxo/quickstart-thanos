@@ -1,6 +1,6 @@
-![](https://github.com/dbluxo/quickstart-thanos/workflows/build-and-test/badge.svg)
-
 # Quickstart for Thanos
+
+![](https://github.com/dbluxo/quickstart-thanos/workflows/build-and-test/badge.svg)
 
 Get up and running with Thanos, Prometheus, Grafana, Alertmanager, cAdvisor and Node Exporter with a `docker-compose.yaml` file in less than 5 minutes.
 

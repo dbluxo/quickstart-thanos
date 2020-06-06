@@ -1,4 +1,4 @@
-![](https://github.com/dbluxo/quickstart-thanos/workflows/build-and-test/badge.svg?branch=master)
+![](https://github.com/dbluxo/quickstart-thanos/workflows/build-and-test/badge.svg)
 
 # Quickstart for Thanos
 

@@ -23,7 +23,7 @@ jobs:
         timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:10903/-/ready
         timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:10904/-/ready
     - name: test-alertmanager
-      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:10902/-/ready
+      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9093/-/ready
     - name: test-grafana
       run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:3000/api/health
     - name: test-cadvisor
@@ -32,3 +32,8 @@ jobs:
       run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9100/metrics > /dev/null
     - name: test-minio
       run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9000/minio/health/ready
+    - name: paranoid-test
+      run: |
+        docker-compose ps --all
+        if [[ `docker-compose ps --all | tail -n +3 | wc -l` != `docker-compose ps | grep " Up " | wc -l` ]]; then exit 1; fi
+            

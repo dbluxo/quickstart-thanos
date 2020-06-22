@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Lint Code Base
+      uses: docker://github/super-linter:v2.1.0 
     - name: docker-compose-validate
       run: docker-compose config
     - name: docker-compose-build-and-start

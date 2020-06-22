@@ -6,7 +6,7 @@ Get up and running with Thanos, Prometheus, Grafana, Alertmanager, cAdvisor and 
 
 ## Running the example
 
-```
+bash```
 $ git clone https://github.com/dbluxo/quickstart-thanos
 $ cd quickstart-thanos
 $ docker-compose up -d

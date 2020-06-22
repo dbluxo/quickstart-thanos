@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Lint Code Base
+    - name: lint-code-base
       uses: docker://github/super-linter:v2.1.0 
     - name: docker-compose-validate
       run: docker-compose config
@@ -38,4 +38,3 @@ jobs:
       run: |
         docker-compose ps --all
         if [[ `docker-compose ps --all | tail -n +3 | wc -l` != `docker-compose ps | grep " Up " | wc -l` ]]; then exit 1; fi
-            

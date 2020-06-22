@@ -55,7 +55,7 @@ Is already preconfigured.
 * Add values from picture below
 * Click the green button `Save & Test`
 
-<img src="https://github.com/dbluxo/quickstart-thanos/raw/master/images/Add_Thanos_Data_Source.png" width="600" heighth="600">
+<img src="https://github.com/dbluxo/quickstart-thanos/raw/master/images/Add_Thanos_Data_Source.png" alt="Add Thanos Data Source" width="600" heighth="600">
 
 * Explore metrics via http://localhost:3000/explore
 

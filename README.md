@@ -4,7 +4,7 @@
 
 Get up and running with Thanos, Prometheus, Grafana, Alertmanager, cAdvisor and Node Exporter with a `docker-compose.yaml` file in less than 5 minutes.
 
-### Running the example
+## Running the example
 
 ```
 $ git clone https://github.com/dbluxo/quickstart-thanos

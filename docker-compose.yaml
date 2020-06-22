@@ -244,6 +244,7 @@ services:
     volumes:
       - ./thanos/:/etc/thanos/
     command:
+      - 'tools'
       - 'bucket'
       - 'web'
       - '--http-address=0.0.0.0:10902'

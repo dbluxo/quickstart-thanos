@@ -16,7 +16,7 @@ The following services will be installed (and some are accessible via browser):
 
 | Component                     | Description                                                               | URL                           |
 | -----------------------       | ------------------------------------------------------                    | ----------------------------- |
-| prometheus-1                  | Prometheus Server 1 (labels: cluster=chicago, replica=r1)       | http://localhost:9081/        |
+| prometheus-1 | Prometheus Server 1 (labels: cluster=chicago, replica=r1)       | http://localhost:9081/        |
 | prometheus-2                  | Prometheus Server 2 (labels: cluster=chicago, replica=r2)        | http://localhost:9082/        |
 | prometheus-3                  | Prometheus Server 3 (labels: cluster=seattle, replica=r1)        | http://localhost:9083/        |
 | prometheus-4                  | Prometheus Server 4 (labels: cluster=seattle, replica=r2)       | http://localhost:9084/        |

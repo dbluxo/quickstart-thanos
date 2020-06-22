@@ -4,37 +4,51 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: lint-code-base
-      uses: docker://github/super-linter:v2.1.0 
-    - name: docker-compose-validate
-      run: docker-compose config
-    - name: docker-compose-build-and-start
-      run: docker-compose up -d
-    - name: run-sleep-before-testing
-      run: sleep 30s
-    - name: test-prometheus
-      run: |
-        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9081/-/ready
-        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9082/-/ready
-        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9083/-/ready
-        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9084/-/ready
-    - name: test-thanos
-      run: |
-        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:10902/-/ready
-        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:10903/-/ready
-        timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:10904/-/ready
-    - name: test-alertmanager
-      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9093/-/ready
-    - name: test-grafana
-      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:3000/api/health
-    - name: test-cadvisor
-      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:8080/healthz
-    - name: test-node-exporter
-      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9100/metrics > /dev/null
-    - name: test-minio
-      run: timeout 30s curl -fisS --retry 10 --retry-connrefused http://localhost:9000/minio/health/ready
-    - name: paranoid-test
-      run: |
-        docker-compose ps --all
-        if [[ `docker-compose ps --all | tail -n +3 | wc -l` != `docker-compose ps | grep " Up " | wc -l` ]]; then exit 1; fi
+      - uses: actions/checkout@v2
+      - name: lint-code-base
+        uses: docker://github/super-linter:v2.1.0
+      - name: docker-compose-validate
+        run: docker-compose config
+      - name: docker-compose-build-and-start
+        run: docker-compose up -d
+      - name: run-sleep-before-testing
+        run: sleep 30s
+      - name: test-prometheus
+        run: |
+          timeout 30s curl -fisS --retry 10 \
+            --retry-connrefused http://localhost:9081/-/ready
+          timeout 30s curl -fisS --retry 10 \
+            --retry-connrefused http://localhost:9082/-/ready
+          timeout 30s curl -fisS --retry 10 \
+            --retry-connrefused http://localhost:9083/-/ready
+          timeout 30s curl -fisS --retry 10 \
+            --retry-connrefused http://localhost:9084/-/ready
+      - name: test-thanos
+        run: |
+          timeout 30s curl -fisS --retry 10 \
+            --retry-connrefused http://localhost:10902/-/ready
+          timeout 30s curl -fisS --retry 10 \
+            --retry-connrefused http://localhost:10903/-/ready
+          timeout 30s curl -fisS --retry 10 \
+            --retry-connrefused http://localhost:10904/-/ready
+      - name: test-alertmanager
+        run: timeout 30s curl -fisS --retry 10 \
+          --retry-connrefused http://localhost:9093/-/ready
+      - name: test-grafana
+        run: timeout 30s curl -fisS --retry 10 \
+          --retry-connrefused http://localhost:3000/api/health
+      - name: test-cadvisor
+        run: timeout 30s curl -fisS --retry 10 \
+          --retry-connrefused http://localhost:8080/healthz
+      - name: test-node-exporter
+        run: timeout 30s curl -fisS --retry 10 \
+          --retry-connrefused http://localhost:9100/metrics > /dev/null
+      - name: test-minio
+        run: timeout 30s curl -fisS --retry 10 \
+          --retry-connrefused http://localhost:9000/minio/health/ready
+      - name: paranoid-test
+        run: |
+          docker-compose ps --all
+          if [[ `docker-compose ps --all | tail -n +3 \
+            | wc -l` != `docker-compose ps |  grep " Up " \
+            | wc -l` ]]; then exit 1; fi

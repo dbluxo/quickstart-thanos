@@ -1,5 +1,14 @@
 {
   "extends": [
     "config:base"
+  ],
+  "assignees": [
+    "dbluxo"
+  ],
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    }
   ]
 }

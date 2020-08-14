@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: lint-code-base
-        uses: docker://github/super-linter:v2.1.0
+        uses: docker://github/super-linter:v2.1.0@sha256:0f00cbdf304024541b65628e8cf224b0ca691e4171f2cdcf50d2be1be5d3c139
       - name: docker-compose-validate
         run: docker-compose config
       - name: docker-compose-build-and-start

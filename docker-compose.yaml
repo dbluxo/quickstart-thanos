@@ -99,7 +99,7 @@ services:
         restart: always
 
     thanos-sidecar-1:
-        image: quay.io/thanos/thanos:v0.17.2
+        image: quay.io/thanos/thanos:v0.18.0
         volumes:
             - ./thanos/:/etc/thanos/
             - prometheus1_data:/prometheus
@@ -116,7 +116,7 @@ services:
         restart: always
 
     thanos-sidecar-2:
-        image: quay.io/thanos/thanos:v0.17.2
+        image: quay.io/thanos/thanos:v0.18.0
         volumes:
             - ./thanos/:/etc/thanos/
             - prometheus2_data:/prometheus
@@ -133,7 +133,7 @@ services:
         restart: always
 
     thanos-sidecar-3:
-        image: quay.io/thanos/thanos:v0.17.2
+        image: quay.io/thanos/thanos:v0.18.0
         volumes:
             - ./thanos/:/etc/thanos/
             - prometheus3_data:/prometheus
@@ -150,7 +150,7 @@ services:
         restart: always
 
     thanos-sidecar-4:
-        image: quay.io/thanos/thanos:v0.17.2
+        image: quay.io/thanos/thanos:v0.18.0
         volumes:
             - ./thanos/:/etc/thanos/
             - prometheus4_data:/prometheus
@@ -167,7 +167,7 @@ services:
         restart: always
 
     thanos-querier:
-        image: quay.io/thanos/thanos:v0.17.2
+        image: quay.io/thanos/thanos:v0.18.0
         command:
             - 'query'
             - '--grpc-address=0.0.0.0:10091'
@@ -188,7 +188,7 @@ services:
         restart: always
 
     thanos-store-gateway:
-        image: quay.io/thanos/thanos:v0.17.2
+        image: quay.io/thanos/thanos:v0.18.0
         volumes:
             - ./thanos/:/etc/thanos/
         command:
@@ -202,7 +202,7 @@ services:
         restart: always
 
     thanos-compactor:
-        image: quay.io/thanos/thanos:v0.17.2
+        image: quay.io/thanos/thanos:v0.18.0
         volumes:
             - ./thanos/:/etc/thanos/
         command:
@@ -216,7 +216,7 @@ services:
         restart: always
 
     thanos-ruler:
-        image: quay.io/thanos/thanos:v0.17.2
+        image: quay.io/thanos/thanos:v0.18.0
         volumes:
             - ./thanos/:/etc/thanos/
         command:
@@ -240,7 +240,7 @@ services:
         restart: always
 
     thanos-bucket-web:
-        image: quay.io/thanos/thanos:v0.17.2
+        image: quay.io/thanos/thanos:v0.18.0
         volumes:
             - ./thanos/:/etc/thanos/
         command:

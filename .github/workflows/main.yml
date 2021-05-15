@@ -28,6 +28,8 @@ jobs:
       - name: test-thanos
         run: |
           timeout 30s curl -fisS --retry 10 \
+            --retry-connrefused http://localhost:10901/-/ready
+          timeout 30s curl -fisS --retry 10 \
             --retry-connrefused http://localhost:10902/-/ready
           timeout 30s curl -fisS --retry 10 \
             --retry-connrefused http://localhost:10903/-/ready

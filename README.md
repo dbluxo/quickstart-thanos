@@ -24,7 +24,8 @@ The following services will be installed (and some are accessible via browser):
 | thanos-sidecar-2              | Thanos Sidecar for Prometheus Server 2                                    | not accessible via browser    |
 | thanos-sidecar-3              | Thanos Sidecar for Prometheus Server 3                                    | not accessible via browser    |
 | thanos-sidecar-4              | Thanos Sidecar for Prometheus Server 4                                    | not accessible via browser    |
-| thanos-querier                | Thanos Query Gateway                                                      | <http://localhost:10902/>     |
+| thanos-query-frontend         | Thanos Query Frontend                                                     | <http://localhost:10901/>     |
+| thanos-querier                | Thanos Querier                                                            | <http://localhost:10902/>     |
 | thanos-ruler                  | Thanos Ruler                                                              | <http://localhost:10903/>     |
 | thanos-bucket-web             | Thanos Bucket Web                                                         | <http://localhost:10904/>     |
 | thanos-store-gateway          | Thanos Store Gateway                                                      | not accessible via browser    |
@@ -51,17 +52,9 @@ Access Key - smth
 Secret Key - Need8Chars (Keys are stored in the `docker-compose.yaml` file)
 ```
 
-## Add Thanos Data Source in Grafana
-Is already preconfigured.
+## Explore metrics
 
-* Open <http://localhost:3000/datasources/new>
-* Choose `Prometheus`
-* Add values from picture below
-* Click the green button `Save & Test`
-
-<img src="https://github.com/dbluxo/quickstart-thanos/raw/master/images/Add_Thanos_Data_Source.png" alt="Add Thanos Data Source" width="600" heighth="600">
-
-* Explore metrics via <http://localhost:3000/explore>
+* Explore metrics via Grafana <http://localhost:3000/explore> or the Thanos Query Frontend <http://localhost:10901>
 
 ## Notes
 

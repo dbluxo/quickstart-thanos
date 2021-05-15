@@ -54,7 +54,7 @@ Secret Key - Need8Chars (Keys are stored in the `docker-compose.yaml` file)
 
 ## Explore metrics
 
-* Explore metrics via Grafana <http://localhost:3000/explore> or the Thanos Query Frontend <http://localhost:10901>s
+* Explore metrics via Grafana <http://localhost:3000/explore> or the Thanos Query Frontend <http://localhost:10901>
 
 ## Notes
 

@@ -300,7 +300,7 @@ services:
         restart: always
 
     alertmanager:
-        image: prom/alertmanager:v0.22.1
+        image: prom/alertmanager:v0.22.2
         ports:
             - 9093:9093
         volumes:

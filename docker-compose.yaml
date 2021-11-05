@@ -190,6 +190,7 @@ services:
             - '--store=thanos-sidecar-3:10091'
             - '--store=thanos-sidecar-4:10091'
             - '--store=thanos-store-gateway:10091'
+            - '--store=thanos-ruler:10091'
         ports:
             - 10902:10902
         depends_on:

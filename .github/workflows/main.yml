@@ -53,6 +53,6 @@ jobs:
       - name: paranoid-test
         run: |
           docker-compose ps --all
-          if [[ `docker-compose ps --all | tail -n +3 \
-            | wc -l` != `docker-compose ps |  grep " Up " \
-            | wc -l` ]]; then exit 1; fi
+          numberOfExpectedRunningContainers=$(docker-compose ps --all | tail -n +3 | wc -l)
+          numberOfActualRunningContainers=$(docker-compose ps | grep -c " Up ")
+          if [ "$numberOfExpectedRunningContainers" != "$numberOfActualRunningContainers" ]; then exit 1; fi

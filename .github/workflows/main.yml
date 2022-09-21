@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: lint-code-base
-        uses: docker://github/super-linter:v4.5.0@sha256:d25b313068ea3cdb7c2cbbf5f4ed24466982112f71bb371e25ac9a96bc31fb44
+        uses: docker://github/super-linter:v4.9.6@sha256:65320e0da6fc983fccdca70cb74cb30bc55797300384ecc82458b42bb8d30828
         env:
           VALIDATE_KUBERNETES_KUBEVAL: false
       - name: docker-compose-validate
@@ -53,6 +53,6 @@ jobs:
       - name: paranoid-test
         run: |
           docker-compose ps --all
-          if [[ `docker-compose ps --all | tail -n +3 \
-            | wc -l` != `docker-compose ps |  grep " Up " \
-            | wc -l` ]]; then exit 1; fi
+          numberOfExpectedRunningContainers=$(docker-compose ps --all | tail -n +3 | wc -l)
+          numberOfActualRunningContainers=$(docker-compose ps | grep -c " Up ")
+          if [ "$numberOfExpectedRunningContainers" != "$numberOfActualRunningContainers" ]; then exit 1; fi

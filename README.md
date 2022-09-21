@@ -2,7 +2,7 @@
 
 ![CI badge](https://github.com/dbluxo/quickstart-thanos/workflows/build-and-test/badge.svg)
 
-Get up and running with Thanos, Prometheus, Grafana, Alertmanager, cAdvisor and Node Exporter with a `docker-compose.yaml` file in less than 5 minutes.
+Get up and running with Thanos, Prometheus, Grafana, Alertmanager, cAdvisor and node_exporter with a `docker-compose.yaml` file in less than 5 minutes.
 
 ## Running the example
 
@@ -34,7 +34,7 @@ The following services will be installed (and some are accessible via browser):
 | alertmanager                  | Alertmanager                                                              | <http://localhost:9093/>      |
 | grafana                       | Grafana                                                                   | <http://localhost:3000/>      |
 | cadvisor                      | cAdvisor                                                                  | <http://localhost:8080/>      |
-| node-exporter                 | Node Exporter                                                             | <http://localhost:9100/>      |
+| node-exporter                 | node_exporter                                                             | <http://localhost:9100/>      |
 
 ## Credentials
 

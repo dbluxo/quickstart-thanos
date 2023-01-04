@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: lint-code-base
-        uses: docker://github/super-linter:v4.9.7@sha256:458d8749baa2da3ef814dfc04832fca41446f6e01d7b5d6ce3c67ff0ef5ed337
+        uses: docker://github/super-linter:v4.10.0@sha256:4e04df5a4f8fd76cd16dd17a07f015a33e5964ca07c48184fc1a163e10dd737b
         env:
           VALIDATE_KUBERNETES_KUBEVAL: false
       - name: docker-compose-validate

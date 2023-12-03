@@ -4,7 +4,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: lint-code-base
         uses: docker://github/super-linter:v5.0.0@sha256:2119e8534e9a9e86a18bc5ae398b59c80c1906640a9c8537308a58fe111f07a9
         env:

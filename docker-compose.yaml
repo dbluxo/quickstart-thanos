@@ -286,7 +286,7 @@ services:
             - 9000:9000
 
     node-exporter:
-        image: prom/node-exporter:v1.8.0
+        image: prom/node-exporter:v1.8.1
         volumes:
             - /proc:/host/proc:ro
             - /sys:/host/sys:ro
